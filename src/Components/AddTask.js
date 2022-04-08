@@ -3,6 +3,8 @@ import styles from "../styles/styles";
 import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
 
 import PhoneInput from "react-native-phone-number-input";
+import { Input } from "./Input";
+import navigationStrings from "../navigation/navigationStrings";
 
 
 export const AddTask = ({ navigation }) => {
@@ -17,37 +19,15 @@ export const AddTask = ({ navigation }) => {
                     containerStyle={styles.phoneInput}
                     onChangeText={(value) => setMob(value)}
                 />
-                {/* Name */}
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={"Name"}
-                        onChangeText={(value) => setPass(value)}
-                    />
-                </View>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={"Age"}
-                        onChangeText={(value) => setPass(value)}
-                    />
-                </View>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={"Address"}
-                        onChangeText={(value) => setPass(value)}
-                    />
-                </View>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={"Name"}
-                        onChangeText={(value) => setPass(value)}
-                    />
-                </View>
+                <Input placeholderText="Name"/>
 
-                <TouchableOpacity onPress={{}}>
+                <Input placeholderText="Age"/>
+                
+                <Input placeholderText="Address"/>
+
+
+
+                <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.HOME)}>
                     <View style={styles.logSignBtn}>
                         <Text style={styles.logBtntxt}>SUBMIT</Text>
                     </View>
@@ -58,3 +38,24 @@ export const AddTask = ({ navigation }) => {
         </View>
     )
 }
+                // <View>
+                //     <TextInput
+                //         style={styles.input}
+                //         placeholder={"Name"}
+                //         onChangeText={(value) => setPass(value)}
+                //     />
+                // </View>
+                // <View>
+                //     <TextInput
+                //         style={styles.input}
+                //         placeholder={"Age"}
+                //         onChangeText={(value) => setPass(value)}
+                //     />
+                // </View>
+                // <View>
+                //     <TextInput
+                //         style={styles.input}
+                //         placeholder={"Address"}
+                //         onChangeText={(value) => setPass(value)}
+                //     />
+                // </View>
