@@ -16,7 +16,7 @@ export const addToDo = (data) => {
     return {
         type: types.SUBMIT_TO_DO,
         payload: {
-            id: Math.floor(Math.random()*1000),
+            id: Math.floor(Math.random() * 1000),
             data: data
         },
     }
@@ -25,6 +25,13 @@ export const addToDo = (data) => {
 export const removeToDo = (id) => {
     return {
         type: types.DELETE_TO_DO,
+        id
+    }
+}
+
+export const EditToDo = (id) => {
+    return {
+        type: types.EDIT_TO_DO,
         id
     }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../styles/styles';
 import imagePath from '../../constants/imagePath';
-import {loginFunction} from '../../redux/actions/auth';
+import { loginFunction } from '../../redux/actions/auth';
 
 import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
 import PhoneInput from "react-native-phone-number-input";

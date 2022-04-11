@@ -44,9 +44,8 @@ export const AddTask = ({ navigation }) => {
 
                 <Input placeholderText="Address" valueText={InputAddress} onChangeTxt={(value) => setInputAddress(value)} />
 
-                <Text>
-                    {InputMobile} your name is {InputName}, your age is {InputAge}, your address is {InputAddress}
-                </Text>
+                <Text>{InputMobile} your name is {InputName}, your age is {InputAge}, your address is {InputAddress}</Text>
+
                 <TouchableOpacity onPress={() => addTask()}>
                     <View style={styles.logSignBtn}>
                         <Text style={styles.logBtntxt}>SUBMIT</Text>
@@ -58,24 +57,3 @@ export const AddTask = ({ navigation }) => {
         </View>
     )
 }
-                // <View>
-                //     <TextInput
-                //         style={styles.input}
-                //         placeholder={"Name"}
-                //         onChangeText={(value) => setPass(value)}
-                //     />
-                // </View>
-                // <View>
-                //     <TextInput
-                //         style={styles.input}
-                //         placeholder={"Age"}
-                //         onChangeText={(value) => setPass(value)}
-                //     />
-                // </View>
-                // <View>
-                //     <TextInput
-                //         style={styles.input}
-                //         placeholder={"Address"}
-                //         onChangeText={(value) => setPass(value)}
-                //     />
-                // </View>

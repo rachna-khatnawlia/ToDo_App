@@ -4,17 +4,22 @@ import styles from '../../styles/styles';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../navigation/navigationStrings';
 
-import { Logout } from '../../redux/actions/auth';
+import { EditToDo, Logout } from '../../redux/actions/auth';
 
 import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { DataTable } from 'react-native-paper';
-import { taskInput } from '../../redux/reducers/toDoReducer';
 import { removeToDo } from '../../redux/actions/auth';
 
 export default function Home({ navigation }) {
     const dispatch = useDispatch();
+    const EditData = (data) =>{
+        console.log(data)
+        // dispatch(EditToDo(data))
+        // navigation.navigate(navigationStrings.ADD_TASK)
+
+    }
     const list = useSelector((state) => state.taskInput.todo_list)
     return (
         <View style={{ flex: 1, position: 'relative' }}>
@@ -54,7 +59,7 @@ export default function Home({ navigation }) {
                                     </TouchableOpacity>
                                 </DataTable.Cell>
                                 <DataTable.Cell>
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => EditData(element)}>
                                         <Image source={imagePath.edit} style={{ height: 30, width: 30, marginTop: 10 }} />
                                     </TouchableOpacity>
                                 </DataTable.Cell>
