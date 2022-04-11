@@ -4,4 +4,6 @@ export default {
     hidePass: require('../assets/images/hidePass.png'),
     showPass: require('../assets/images/hidePass.png'),
     add: require('../assets/images/add.png'),
+    delete: require('../assets/images/deleteIcon.png'),
+    edit: require('../assets/images/editIcon.png'),
 };
