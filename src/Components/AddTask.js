@@ -14,7 +14,9 @@ import { useDispatch } from "react-redux";
 export const AddTask = ({ navigation, route }) => {
     const Dispatch = useDispatch();
     const allData = route?.params?.paramData
-    console.log(allData, "all dat")
+    const allIndex = route?.params?.paramIndex
+
+    // console.log(allData,allIndex, "all dat")
 
     const [InputMobile, setInputMobile] = useState(allData?.mobile ? allData?.mobile : '');
     const [InputName, setInputName] = useState(allData?.name ? allData?.name : '');
@@ -23,13 +25,15 @@ export const AddTask = ({ navigation, route }) => {
 
     const data = { InputMobile, InputName, InputAge, InputAddress }
     function addTask() {
-        console.log(data);
+        // console.log(data);
         Dispatch(addToDo(data))
         navigation.navigate(navigationStrings.HOME)
     }
+    const idForEdit= allData?.id;
     const edittask = () => {
-        alert("123");
-        EditToDoData(allData);
+        // alert("123");
+        // console.log(idForEdit)
+        Dispatch(EditToDoData(idForEdit,data, allIndex));
         navigation.navigate(navigationStrings.HOME)
     }
     return (

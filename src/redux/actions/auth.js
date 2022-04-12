@@ -29,7 +29,14 @@ export const removeToDo = (id) => {
     }
 }
 
-export const EditToDoData = (obj) => {
-    
+export const EditToDoData = (idForEdit, data, allIndex) => {
+    return{
+        type: types.EDIT_TO_DO_DATA,
+        payload:{
+            id: idForEdit,
+            data: data,
+            index: allIndex
+        }
+    }
 }
 
