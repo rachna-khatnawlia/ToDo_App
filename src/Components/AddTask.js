@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/styles";
 
-import { addToDo } from "../redux/actions/auth";
+import { addToDo, EditToDo, EditToDoData } from "../redux/actions/auth";
 
 import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
 
@@ -11,13 +11,15 @@ import navigationStrings from "../navigation/navigationStrings";
 import { useDispatch } from "react-redux";
 
 
-export const AddTask = ({ navigation }) => {
+export const AddTask = ({ navigation, route }) => {
     const Dispatch = useDispatch();
+    const allData = route?.params?.paramData
+    console.log(allData, "all dat")
 
-    const [InputMobile, setInputMobile] = useState('');
-    const [InputName, setInputName] = useState('');
-    const [InputAge, setInputAge] = useState('');
-    const [InputAddress, setInputAddress] = useState('');
+    const [InputMobile, setInputMobile] = useState(allData?.mobile ? allData?.mobile : '');
+    const [InputName, setInputName] = useState(allData?.name ? allData?.name : '');
+    const [InputAge, setInputAge] = useState(allData?.age ? allData?.age : '');
+    const [InputAddress, setInputAddress] = useState(allData?.address ? allData?.address : '');
 
     const data = { InputMobile, InputName, InputAge, InputAddress }
     function addTask() {
@@ -25,7 +27,11 @@ export const AddTask = ({ navigation }) => {
         Dispatch(addToDo(data))
         navigation.navigate(navigationStrings.HOME)
     }
-
+    const edittask = () => {
+        alert("123");
+        EditToDoData(allData);
+        navigation.navigate(navigationStrings.HOME)
+    }
     return (
         <View style={styles.loginBox}>
             <View style={styles.loginFormBg}>
@@ -46,9 +52,9 @@ export const AddTask = ({ navigation }) => {
 
                 <Text>{InputMobile} your name is {InputName}, your age is {InputAge}, your address is {InputAddress}</Text>
 
-                <TouchableOpacity onPress={() => addTask()}>
+                <TouchableOpacity onPress={allData ? () => edittask() : () => addTask()}>
                     <View style={styles.logSignBtn}>
-                        <Text style={styles.logBtntxt}>SUBMIT</Text>
+                        <Text style={styles.logBtntxt}>{allData ? 'EDIT' : 'SUBMIT'}</Text>
                     </View>
                 </TouchableOpacity>
 

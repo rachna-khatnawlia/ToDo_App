@@ -28,8 +28,8 @@ export const taskInput = (state = initialState, action) => {
                 todo_list : filteredTodos
             }
         
-        case types.EDIT_TO_DO:
-                
+        case types.EDIT_TO_DO_DATA:
+            
 
 
         default: return state

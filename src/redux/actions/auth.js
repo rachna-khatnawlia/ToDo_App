@@ -29,10 +29,7 @@ export const removeToDo = (id) => {
     }
 }
 
-export const EditToDo = (id) => {
-    return {
-        type: types.EDIT_TO_DO,
-        id
-    }
+export const EditToDoData = (obj) => {
+    
 }
 

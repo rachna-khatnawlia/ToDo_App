@@ -14,10 +14,9 @@ import { removeToDo } from '../../redux/actions/auth';
 
 export default function Home({ navigation }) {
     const dispatch = useDispatch();
-    const EditData = (data) =>{
+    const EditDataPassThroughParam = (data) =>{
         console.log(data)
-        // dispatch(EditToDo(data))
-        // navigation.navigate(navigationStrings.ADD_TASK)
+        navigation.navigate(navigationStrings.ADD_TASK,{paramData:data})
 
     }
     const list = useSelector((state) => state.taskInput.todo_list)
@@ -59,7 +58,7 @@ export default function Home({ navigation }) {
                                     </TouchableOpacity>
                                 </DataTable.Cell>
                                 <DataTable.Cell>
-                                    <TouchableOpacity onPress={() => EditData(element)}>
+                                    <TouchableOpacity onPress={() => EditDataPassThroughParam(element)}>
                                         <Image source={imagePath.edit} style={{ height: 30, width: 30, marginTop: 10 }} />
                                     </TouchableOpacity>
                                 </DataTable.Cell>
