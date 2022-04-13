@@ -4,19 +4,19 @@ import styles from '../../styles/styles';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../navigation/navigationStrings';
 
-import { EditToDo, Logout } from '../../redux/actions/auth';
+import { Logout } from '../../redux/actions/auth';
+import { removeToDo } from '../../redux/actions/auth';
 
-import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { DataTable } from 'react-native-paper';
-import { removeToDo } from '../../redux/actions/auth';
 
 export default function Home({ navigation }) {
     const dispatch = useDispatch();
-    const EditDataPassThroughParam = (data,index) =>{
-        console.log(data, index)
-        navigation.navigate(navigationStrings.ADD_TASK,{paramData:data, paramIndex:index})
+    const EditDataPassThroughParam = (data) =>{
+        console.log(data)
+        navigation.navigate(navigationStrings.ADD_TASK,{paramData:data})
     }
     const list = useSelector((state) => state.taskInput.todo_list)
     return (
@@ -31,7 +31,6 @@ export default function Home({ navigation }) {
             <DataTable style={styles.container}>
 
                 <DataTable.Header style={styles.tableHeader}>
-                    {/* <DataTable.Title>Id</DataTable.Title> */}
                     <DataTable.Title>Name</DataTable.Title>
                     <DataTable.Title>Age</DataTable.Title>
                     <DataTable.Title>Address</DataTable.Title>
@@ -42,11 +41,10 @@ export default function Home({ navigation }) {
                 </DataTable.Header>
 
                 {
-                    list.map((element, index) => {
+                    list.map((element) => {
                         return (
 
                             <DataTable.Row key={element.id}>
-                                {/* <DataTable.Cell><>{element.id}</></DataTable.Cell> */}
                                 <DataTable.Cell><>{element.name}</></DataTable.Cell>
                                 <DataTable.Cell><>{element.age}</></DataTable.Cell>
                                 <DataTable.Cell><>{element.address}</></DataTable.Cell>
@@ -57,7 +55,7 @@ export default function Home({ navigation }) {
                                     </TouchableOpacity>
                                 </DataTable.Cell>
                                 <DataTable.Cell>
-                                    <TouchableOpacity onPress={() => EditDataPassThroughParam(element,index)}>
+                                    <TouchableOpacity onPress={() => EditDataPassThroughParam(element)}>
                                         <Image source={imagePath.edit} style={{ height: 30, width: 30, marginTop: 10 }} />
                                     </TouchableOpacity>
                                 </DataTable.Cell>

@@ -13,27 +13,26 @@ import { useDispatch } from "react-redux";
 
 export const AddTask = ({ navigation, route }) => {
     const Dispatch = useDispatch();
-    const allData = route?.params?.paramData
-    const allIndex = route?.params?.paramIndex
+    const allData = route?.params?.paramData;
+    const idForEdit= allData?.id;
 
-    // console.log(allData,allIndex, "all dat")
+    console.log(idForEdit,allData, "Params passed from edit button")
 
-    const [InputMobile, setInputMobile] = useState(allData?.mobile ? allData?.mobile : '');
-    const [InputName, setInputName] = useState(allData?.name ? allData?.name : '');
-    const [InputAge, setInputAge] = useState(allData?.age ? allData?.age : '');
-    const [InputAddress, setInputAddress] = useState(allData?.address ? allData?.address : '');
+    const [mobile, setInputMobile] = useState(allData?.mobile ? allData?.mobile : '');
+    const [name, setInputName] = useState(allData?.name ? allData?.name : '');
+    const [age, setInputAge] = useState(allData?.age ? allData?.age : '');
+    const [address, setInputAddress] = useState(allData?.address ? allData?.address : '');
 
-    const data = { InputMobile, InputName, InputAge, InputAddress }
+    const data = { mobile, name, age, address }
     function addTask() {
         // console.log(data);
         Dispatch(addToDo(data))
         navigation.navigate(navigationStrings.HOME)
     }
-    const idForEdit= allData?.id;
     const edittask = () => {
         // alert("123");
         // console.log(idForEdit)
-        Dispatch(EditToDoData(idForEdit,data, allIndex));
+        Dispatch(EditToDoData({mobile, name, age, address, idForEdit}));
         navigation.navigate(navigationStrings.HOME)
     }
     return (
@@ -45,16 +44,16 @@ export const AddTask = ({ navigation, route }) => {
                 <PhoneInput
                     placeholder={"Mobile No.*"}
                     containerStyle={styles.phoneInput}
-                    value={InputMobile}
+                    value={mobile}
                     onChangeText={(value) => setInputMobile(value)}
                 />
-                <Input placeholderText="Name" valueText={InputName} onChangeTxt={(value) => setInputName(value)} />
+                <Input placeholderText="Name" valueText={name} onChangeTxt={(value) => setInputName(value)} />
 
-                <Input placeholderText="Age" valueText={InputAge} onChangeTxt={(value) => setInputAge(value)} />
+                <Input placeholderText="Age" valueText={age} onChangeTxt={(value) => setInputAge(value)} />
 
-                <Input placeholderText="Address" valueText={InputAddress} onChangeTxt={(value) => setInputAddress(value)} />
+                <Input placeholderText="Address" valueText={address} onChangeTxt={(value) => setInputAddress(value)} />
 
-                <Text>{InputMobile} your name is {InputName}, your age is {InputAge}, your address is {InputAddress}</Text>
+                {/* <Text>{Mobile} your name is {Name}, your age is {Age}, your address is {Address}</Text> */}
 
                 <TouchableOpacity onPress={allData ? () => edittask() : () => addTask()}>
                     <View style={styles.logSignBtn}>
