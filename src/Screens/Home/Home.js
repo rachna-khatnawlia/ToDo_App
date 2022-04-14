@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from '../../styles/styles';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../navigation/navigationStrings';
+import { setItemLocally } from '../../utils/utils';
 
 import { Logout } from '../../redux/actions/auth';
 import { removeToDo } from '../../redux/actions/auth';
@@ -14,11 +15,13 @@ import { DataTable } from 'react-native-paper';
 
 export default function Home({ navigation }) {
     const dispatch = useDispatch();
-    const EditDataPassThroughParam = (data) =>{
+    const EditDataPassThroughParam = (data) => {
         console.log(data)
-        navigation.navigate(navigationStrings.ADD_TASK,{paramData:data})
+        navigation.navigate(navigationStrings.ADD_TASK, { paramData: data })
     }
-    const list = useSelector((state) => state.taskInput.todo_list)
+    const list = useSelector((state) => state.taskInput.todo_list);
+   
+    setItemLocally(list);
     return (
         <View style={{ flex: 1, position: 'relative' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15 }}>
@@ -37,9 +40,9 @@ export default function Home({ navigation }) {
                     <DataTable.Title>Mobile No.</DataTable.Title>
                     <DataTable.Title>Delete</DataTable.Title>
                     <DataTable.Title>Edit</DataTable.Title>
-
                 </DataTable.Header>
-
+                {/* <Text>Hello</Text> */}
+               
                 {
                     list.map((element) => {
                         return (
@@ -50,7 +53,7 @@ export default function Home({ navigation }) {
                                 <DataTable.Cell><>{element.address}</></DataTable.Cell>
                                 <DataTable.Cell><>{element.mobile}</></DataTable.Cell>
                                 <DataTable.Cell>
-                                    <TouchableOpacity onPress={()=> dispatch(removeToDo(element.id))}>
+                                    <TouchableOpacity onPress={() => dispatch(removeToDo(element.id))}>
                                         <Image source={imagePath.delete} style={{ height: 30, width: 30, marginTop: 10 }} />
                                     </TouchableOpacity>
                                 </DataTable.Cell>

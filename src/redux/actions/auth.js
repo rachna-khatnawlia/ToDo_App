@@ -12,13 +12,11 @@ export const Logout = () => {
     }
 }
 
+
 export const addToDo = (data) => {
     return {
         type: types.SUBMIT_TO_DO,
-        payload: {
-            id: Math.floor(Math.random() * 1000),
-            data: data
-        },
+        payload: data
     }
 }
 

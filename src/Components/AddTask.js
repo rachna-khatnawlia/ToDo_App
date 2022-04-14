@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../styles/styles";
 
-import { addToDo, EditToDo, EditToDoData } from "../redux/actions/auth";
+import { addToDo, EditToDoData } from "../redux/actions/auth";
 
 import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
 
@@ -9,6 +9,7 @@ import PhoneInput from "react-native-phone-number-input";
 import { Input } from "./Input";
 import navigationStrings from "../navigation/navigationStrings";
 import { useDispatch } from "react-redux";
+import { setItemLocally } from "../utils/utils";
 
 
 export const AddTask = ({ navigation, route }) => {
@@ -23,8 +24,10 @@ export const AddTask = ({ navigation, route }) => {
     const [age, setInputAge] = useState(allData?.age ? allData?.age : '');
     const [address, setInputAddress] = useState(allData?.address ? allData?.address : '');
 
-    const data = { mobile, name, age, address }
+    const id = Math.floor(Math.random() * 1000);
+    const data = [{ id, mobile, name, age, address }]
     function addTask() {
+        setItemLocally(data);
         // console.log(data);
         Dispatch(addToDo(data))
         navigation.navigate(navigationStrings.HOME)
