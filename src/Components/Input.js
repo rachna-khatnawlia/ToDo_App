@@ -1,15 +1,16 @@
 import React from "react";
-import styles from "../styles/styles";
-import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
+import commonStyle from "../styles/commonStyle";
+import { View, TextInput } from 'react-native';
 
-export const Input = ({ navigation, placeholderText, valueText, onChangeTxt }) => {
+export const Input = ({ navigation, placeholderText, valueText, onChangeTxt, secureTextEntry }) => {
     return (
         <View>
             <TextInput
-                style={styles.input}
+                style={commonStyle.input}
                 placeholder={placeholderText}
                 value={valueText}
                 onChangeText={onChangeTxt}
+                secureTextEntry={secureTextEntry}
             />
         </View>
     )

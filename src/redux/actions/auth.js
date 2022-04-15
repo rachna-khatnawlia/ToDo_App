@@ -1,38 +1,17 @@
+import { store } from "../store";
 import types from "../types";
 
+const { dispatch } = store;
+
 export const loginFunction = (data) => {
-    return {
+    dispatch({
         type: types.LOGIN,
-        payload:data
-    }
+        payload: data
+    })
 }
 
 export const Logout = () => {
-    return {
+    dispatch({
         type: types.USER_LOGOUT,
-    }
+    })
 }
-
-
-export const addToDo = (data) => {
-    return {
-        type: types.SUBMIT_TO_DO,
-        payload: data
-    }
-}
-
-export const removeToDo = (id) => {
-    return {
-        type: types.DELETE_TO_DO,
-        id
-    }
-}
-
-export const EditToDoData = (data) => {
-    return {
-        type: types.EDIT_TO_DO_DATA,
-        payload: data,
-
-    }
-}
-

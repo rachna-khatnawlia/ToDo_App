@@ -1,38 +1,38 @@
 import React, { useEffect, useState } from 'react';
 
-import styles from '../../styles/styles';
+import { homeStyle } from './styles';
 import imagePath from '../../constants/imagePath';
 import navigationStrings from '../../navigation/navigationStrings';
-import { setItemLocally } from '../../utils/utils';
+import actions from '../../redux/actions';
 
-import { Logout } from '../../redux/actions/auth';
-import { removeToDo } from '../../redux/actions/auth';
-
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { DataTable } from 'react-native-paper';
 
 export default function Home({ navigation }) {
+    
     const dispatch = useDispatch();
+
     const EditDataPassThroughParam = (data) => {
         console.log(data)
         navigation.navigate(navigationStrings.ADD_TASK, { paramData: data })
     }
     const list = useSelector((state) => state.taskInput.todo_list);
-   
-    return (
-        <View style={{ flex: 1, position: 'relative' }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15 }}>
-                <Text>HOME</Text>
 
-                <TouchableOpacity onPress={() => dispatch(Logout())}>
-                    <Text style={{ fontSize: 15, color: 'orange', fontWeight: '600', }}>Logout</Text>
+    return (
+        <View style={homeStyle.homeContainer}>
+                    {/* -------------------------Home and Logout--------------------------- */}
+            <View style={homeStyle.homeRow1}>
+                <Text>HOME</Text>
+                <TouchableOpacity onPress={() => actions.Logout()}>
+                    <Text style={homeStyle.logout}>Logout</Text>
                 </TouchableOpacity>
             </View>
-            <DataTable style={styles.container}>
 
-                <DataTable.Header style={styles.tableHeader}>
+                    {/* ------------------------------Table-------------------------------- */}
+            <DataTable>
+                <DataTable.Header>
                     <DataTable.Title>Name</DataTable.Title>
                     <DataTable.Title>Age</DataTable.Title>
                     <DataTable.Title>Address</DataTable.Title>
@@ -40,8 +40,7 @@ export default function Home({ navigation }) {
                     <DataTable.Title>Delete</DataTable.Title>
                     <DataTable.Title>Edit</DataTable.Title>
                 </DataTable.Header>
-                {/* <Text>Hello</Text> */}
-               
+
                 {
                     list.map((element) => {
                         return (
@@ -52,33 +51,24 @@ export default function Home({ navigation }) {
                                 <DataTable.Cell><>{element.address}</></DataTable.Cell>
                                 <DataTable.Cell><>{element.mobile}</></DataTable.Cell>
                                 <DataTable.Cell>
-                                    <TouchableOpacity onPress={() => dispatch(removeToDo(element.id))}>
-                                        <Image source={imagePath.delete} style={{ height: 30, width: 30, marginTop: 10 }} />
+                                    <TouchableOpacity onPress={() => actions.removeToDo(element.id)}>
+                                        <Image source={imagePath.delete} style={homeStyle.editDelBtn} />
                                     </TouchableOpacity>
                                 </DataTable.Cell>
                                 <DataTable.Cell>
                                     <TouchableOpacity onPress={() => EditDataPassThroughParam(element)}>
-                                        <Image source={imagePath.edit} style={{ height: 30, width: 30, marginTop: 10 }} />
+                                        <Image source={imagePath.edit} style={homeStyle.editDelBtn} />
                                     </TouchableOpacity>
                                 </DataTable.Cell>
                             </DataTable.Row>
                         )
                     })
                 }
-
             </DataTable>
 
-
-
-            {/* <View style={[styles.logSignBtn, { backgroundColor: 'black' }]}>
-                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.ADD_TASK)} >
-                    <Text style={[styles.logBtntxt, { paddingHorizontal: 70, paddingVertical: 10 }]}>Add task</Text>
-                </TouchableOpacity>
-            </View> */}
-
-
-            <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.ADD_TASK)} style={styles.addBox}>
-                <Image source={imagePath.add} style={styles.addBtn} />
+                    {/* -------------------------Add Item Button--------------------------- */}
+            <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.ADD_TASK)} style={homeStyle.addBox}>
+                <Image source={imagePath.add} style={homeStyle.addBtn} />
             </TouchableOpacity>
         </View>
     );

@@ -1,25 +1,24 @@
 import React, { useState } from "react";
-import styles from "../styles/styles";
 
-import { addToDo, EditToDoData } from "../redux/actions/auth";
+// import styles from "../styles/styles";
+import commonStyle from "../styles/commonStyle";
+import actions from '../redux/actions'
+import { setItemLocally } from "../utils/utils";
+import navigationStrings from "../navigation/navigationStrings";
 
-import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
+import { Input } from "./Input";
+
+import { View, Text, TouchableOpacity, } from 'react-native';
 
 import PhoneInput from "react-native-phone-number-input";
-import { Input } from "./Input";
-import navigationStrings from "../navigation/navigationStrings";
-import { useDispatch } from "react-redux";
-import { setItemLocally } from "../utils/utils";
 
-
-export const AddTask = ({ navigation, route }) => {
-    const Dispatch = useDispatch();
+export const AddTask = ({ navigation, route }) => {    
 
     //----------------------------------------->getting data from home screen 
     const allData = route?.params?.paramData;
     const idForEdit= allData?.id;
 
-    console.log(idForEdit,allData, "Params passed from edit button")
+    console.log(idForEdit,allData, "Params passed from edit button");
 
     const [mobile, setInputMobile] = useState(allData?.mobile ? allData?.mobile : '');
     const [name, setInputName] = useState(allData?.name ? allData?.name : '');
@@ -34,7 +33,7 @@ export const AddTask = ({ navigation, route }) => {
     function addTask() {
         setItemLocally(data);
         // console.log(data);
-        Dispatch(addToDo(data))
+        actions.addToDo(data);
         navigation.navigate(navigationStrings.HOME)
     }
 
@@ -42,34 +41,34 @@ export const AddTask = ({ navigation, route }) => {
     const edittask = () => {
         // alert("123");
         // console.log(idForEdit)
-        Dispatch(EditToDoData({mobile, name, age, address, idForEdit}));
+        actions.EditToDoData({mobile, name, age, address, idForEdit});
         navigation.navigate(navigationStrings.HOME)
     }
 
 
     return (
-        <View style={styles.loginBox}>
-            <View style={styles.loginFormBg}>
-                <Text style={styles.loginHeading}>Login Screen</Text>
+        <View style={commonStyle.loginBox}>
+            <View style={commonStyle.loginFormBg}>
+                <Text style={commonStyle.loginHeading}>Task</Text>
 
                 {/* ----------------------------Form Inputs ----------------------------------- */}
                 {/* Mobile Input */}
                 <PhoneInput
                     placeholder={"Mobile No.*"}
-                    containerStyle={styles.phoneInput}
+                    containerStyle={commonStyle.phoneInput}
                     value={mobile}
                     onChangeText={(value) => setInputMobile(value)}
                 />
-                <Input placeholderText="Name" valueText={name} onChangeTxt={(value) => setInputName(value)} />
+                <Input placeholderText="Name" valueText={name} onChangeTxt={(value) => setInputName(value)} secureTextEntry="false"/>
 
-                <Input placeholderText="Age" valueText={age} onChangeTxt={(value) => setInputAge(value)} />
+                <Input placeholderText="Age" valueText={age} onChangeTxt={(value) => setInputAge(value)} secureTextEntry="false"/>
 
-                <Input placeholderText="Address" valueText={address} onChangeTxt={(value) => setInputAddress(value)} />
+                <Input placeholderText="Address" valueText={address} onChangeTxt={(value) => setInputAddress(value)} secureTextEntry="false"/>
 
                 {/* ----------------------------show edit or submit button ----------------------------------- */}
                 <TouchableOpacity onPress={allData ? () => edittask() : () => addTask()}>
-                    <View style={styles.logSignBtn}>
-                        <Text style={styles.logBtntxt}>{allData ? 'EDIT' : 'SUBMIT'}</Text>
+                    <View style={commonStyle.logSignBtn}>
+                        <Text style={commonStyle.logBtntxt}>{allData ? 'EDIT' : 'SUBMIT'}</Text>
                     </View>
                 </TouchableOpacity>
 

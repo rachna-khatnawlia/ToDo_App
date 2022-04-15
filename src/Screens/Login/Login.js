@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import styles from '../../styles/styles';
-import imagePath from '../../constants/imagePath';
-import { loginFunction } from '../../redux/actions/auth';
 
-import { View, Text, TouchableOpacity, Image, TextInput, Pressable } from 'react-native';
+import loginStyles from './styles';
+import imagePath from '../../constants/imagePath';
+import actions from '../../redux/actions';
+
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import PhoneInput from "react-native-phone-number-input";
-import { useDispatch } from 'react-redux';
+import commonStyle from '../../styles/commonStyle';
+import { Input } from '../../Components/Input';
 
 export default function Login() {
-  const dispatch = useDispatch();
-
+  //-------------------------------Field Value Usestate----------------------------
   const [pass, setPass] = useState('')
   const [mob, setMob] = useState('')
 
+
+  //--------------------Handle Password Visibility using Eye Button----------------
   const [passwordVisible, setPasswordVisible] = useState(true)
   function handlePasswordEye() {
     if (passwordVisible) {
@@ -21,41 +24,46 @@ export default function Login() {
       setPasswordVisible(true)
     }
   }
-  
-  const data = [{pass, mob}];
-  const handleLogin = (data) =>{
-    console.log(data);
-    dispatch(loginFunction(data))
-  }
-  return (
-    <View style={styles.loginBox}>
-      <View style={styles.loginFormBg}>
-        <Text style={styles.loginHeading}>Login Screen</Text>
 
-        {/* Mobile Input */}
+
+  const data = [{ pass, mob }];
+
+  //-------------------------------Handle Login Function---------------------------
+  const handleLogin = (data) => {
+    console.log(data);
+    actions.loginFunction(data);
+  }
+
+
+  return (
+    <View style={commonStyle.loginBox}>
+      <View style={commonStyle.loginFormBg}>
+        <Text style={commonStyle.loginHeading}>Login Screen</Text>
+
+        {/* --------------------------------Mobile Input----------------------------- */}
         <PhoneInput
           placeholder={"Mobile No.*"}
-          containerStyle={styles.phoneInput}
+          containerStyle={commonStyle.phoneInput}
           onChangeText={(value) => setMob(value)}
         />
-        {/* Password */}
+
         <View>
-          <TextInput
-            style={styles.input}
-            placeholder={"Password"}
-            onChangeText={(value) => setPass(value)}
-            secureTextEntry={passwordVisible}
-          />
-          <TouchableOpacity onPress={handlePasswordEye} style={{ position: 'absolute', right: 20, top: 21 }}>
+          {/* --------------------------------Password Input----------------------------- */}
+          <Input placeholderText="Password" valueText={pass} onChangeTxt={(value) => setPass(value)} secureTextEntry={passwordVisible} />
+
+          {/* -----------------------Password Input Eye------------------- */}
+          <TouchableOpacity onPress={handlePasswordEye} style={loginStyles.eyeBox}>
             <Image
               source={(passwordVisible) ? imagePath.hidePass : imagePath.showPass}
-              style={styles.eyeButton}
+              style={loginStyles.eyeButton}
             />
           </TouchableOpacity>
         </View>
+
+        {/* --------------------------------Login Button----------------------------- */}
         <TouchableOpacity onPress={() => handleLogin(data)}>
-          <View style={styles.logSignBtn}>
-            <Text style={styles.logBtntxt}>LOGIN</Text>
+          <View style={commonStyle.logSignBtn}>
+            <Text style={commonStyle.logBtntxt}>LOGIN</Text>
           </View>
         </TouchableOpacity>
 
