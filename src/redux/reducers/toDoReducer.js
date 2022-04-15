@@ -62,7 +62,7 @@ export const taskInput = (state = initialState, action) => {
         }
 
         case types.EDIT_TO_DO_DATA: {
-            // -------------------------------Update on the basis of id using map------------------------------------
+            // -------------------------------Update on the basis of id using findIndex------------------------------------
             const updateArrayitem = [...state.todo_list]
 
             // console.log("Id for edit", action.payload.idForEdit);

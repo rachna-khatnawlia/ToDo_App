@@ -21,6 +21,12 @@ export default function Login() {
       setPasswordVisible(true)
     }
   }
+  
+  const data = [{pass, mob}];
+  const handleLogin = (data) =>{
+    console.log(data);
+    dispatch(loginFunction(data))
+  }
   return (
     <View style={styles.loginBox}>
       <View style={styles.loginFormBg}>
@@ -47,7 +53,7 @@ export default function Login() {
             />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={() => dispatch(loginFunction())}>
+        <TouchableOpacity onPress={() => handleLogin(data)}>
           <View style={styles.logSignBtn}>
             <Text style={styles.logBtntxt}>LOGIN</Text>
           </View>

@@ -14,6 +14,8 @@ import { setItemLocally } from "../utils/utils";
 
 export const AddTask = ({ navigation, route }) => {
     const Dispatch = useDispatch();
+
+    //----------------------------------------->getting data from home screen 
     const allData = route?.params?.paramData;
     const idForEdit= allData?.id;
 
@@ -24,25 +26,33 @@ export const AddTask = ({ navigation, route }) => {
     const [age, setInputAge] = useState(allData?.age ? allData?.age : '');
     const [address, setInputAddress] = useState(allData?.address ? allData?.address : '');
 
+    //----------------------------------------->Randomly generate id and data from input fields 
     const id = Math.floor(Math.random() * 1000);
     const data = [{ id, mobile, name, age, address }]
+
+    //----------------------------------------->Add New Task 
     function addTask() {
         setItemLocally(data);
         // console.log(data);
         Dispatch(addToDo(data))
         navigation.navigate(navigationStrings.HOME)
     }
+
+    //----------------------------------------->Edit Existing Task 
     const edittask = () => {
         // alert("123");
         // console.log(idForEdit)
         Dispatch(EditToDoData({mobile, name, age, address, idForEdit}));
         navigation.navigate(navigationStrings.HOME)
     }
+
+
     return (
         <View style={styles.loginBox}>
             <View style={styles.loginFormBg}>
                 <Text style={styles.loginHeading}>Login Screen</Text>
 
+                {/* ----------------------------Form Inputs ----------------------------------- */}
                 {/* Mobile Input */}
                 <PhoneInput
                     placeholder={"Mobile No.*"}
@@ -56,8 +66,7 @@ export const AddTask = ({ navigation, route }) => {
 
                 <Input placeholderText="Address" valueText={address} onChangeTxt={(value) => setInputAddress(value)} />
 
-                {/* <Text>{Mobile} your name is {Name}, your age is {Age}, your address is {Address}</Text> */}
-
+                {/* ----------------------------show edit or submit button ----------------------------------- */}
                 <TouchableOpacity onPress={allData ? () => edittask() : () => addTask()}>
                     <View style={styles.logSignBtn}>
                         <Text style={styles.logBtntxt}>{allData ? 'EDIT' : 'SUBMIT'}</Text>

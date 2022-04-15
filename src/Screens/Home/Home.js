@@ -21,7 +21,6 @@ export default function Home({ navigation }) {
     }
     const list = useSelector((state) => state.taskInput.todo_list);
    
-    setItemLocally(list);
     return (
         <View style={{ flex: 1, position: 'relative' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 15 }}>

@@ -1,14 +1,15 @@
 import types from "../types";
 
-export const loginFunction = () => {
+export const loginFunction = (data) => {
     return {
         type: types.LOGIN,
+        payload:data
     }
 }
 
 export const Logout = () => {
     return {
-        type: types.USER_LOGOUT
+        type: types.USER_LOGOUT,
     }
 }
 

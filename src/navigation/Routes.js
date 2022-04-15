@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 const Stack = createStackNavigator();
 
 export default function Routes() {
-  const userData = useSelector(state => state.UserStatus);
-  console.log(userData);
+  const userData = useSelector(state => state.UserStatus.userLoginState);
+  console.log("userData on route page",userData);
   return (
     <NavigationContainer>
       <Stack.Navigator>
