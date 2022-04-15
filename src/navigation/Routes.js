@@ -2,7 +2,6 @@ import React from 'react';
 
 import MainStack from './MainStack';
 import AuthStack from './AuthStack';
-import  UserStatus  from '../redux/reducers/auth';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
