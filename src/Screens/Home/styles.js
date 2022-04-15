@@ -1,31 +1,33 @@
 import { StyleSheet } from "react-native";
+import { moderateScale, moderateScaleVertical, textScale } from "../../styles/responsiveSize";
 
 export const homeStyle = StyleSheet.create({
     homeContainer: {
-        flex: 1, position: 'relative'
+        flex: 1, 
+        position: 'relative'
     },
     homeRow1: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 15
+        padding: moderateScale(15)
     },
     logout: {
-        fontSize: 15,
+        fontSize: textScale(13),
         color: 'orange',
-        fontWeight: '600',
+        fontWeight: '700',
     },
     editDelBtn: {
-        height: 30,
-        width: 30,
-        marginTop: 10
+        height: moderateScale(30),
+        width: moderateScale(30),
+        marginTop: moderateScaleVertical(10)
     },
     addBox:{
         position:"absolute",
-        bottom:30,
-        right:30,
+        bottom:moderateScale(30),
+        right:moderateScale(30),
     },
     addBtn:{
-        height:40,
-        width:40
+        height:moderateScale(40),
+        width:moderateScale(40)
     }
 });

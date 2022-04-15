@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { moderateScale, moderateScaleVertical, textScale } from "./responsiveSize";
 
 export default StyleSheet.create({
     loginBox: {
@@ -6,40 +7,44 @@ export default StyleSheet.create({
         justifyContent: "center",
     },
     loginFormBg: {
-        margin: 10,
-        paddingHorizontal: 18,
-        paddingVertical: 30,
+        margin: moderateScale(10),
+        paddingHorizontal: moderateScale(18),
+        paddingVertical: moderateScaleVertical(25),
         backgroundColor: '#fff',
     },
     loginHeading: {
-        fontSize: 25,
+        fontSize: textScale(22),
         textAlign: 'center',
     },
     phoneInput: { 
-        height: 55, 
+        height: moderateScale(55), 
         width: '98%', 
-        borderRadius: 3, 
-        marginVertical: 20 
+        borderRadius: moderateScale(3), 
     },
     input: {
-        height: 40,
-        marginVertical: 5,
+        height: moderateScale(40),
+        marginVertical: moderateScaleVertical(5),
         borderWidth: 0.7,
-        paddingHorizontal: 10,
-        borderRadius: 4
+        paddingHorizontal: moderateScale(10),
+        borderRadius: moderateScale(4)
     },
     logSignBtn: {
         backgroundColor: 'green',
-        borderRadius: 2,
+        borderRadius: moderateScale(2),
         alignSelf: 'center',
-        marginTop: 15,
+        marginTop: moderateScaleVertical(13),
         overflow: 'hidden'
     },
     logBtntxt: {
-        paddingVertical: 8,
-        paddingHorizontal: 20,
+        paddingVertical: moderateScaleVertical(8),
+        paddingHorizontal: moderateScale(20),
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
     },    
+    errorStyle:{ 
+        textAlign: 'center',
+        color: 'red', 
+        fontSize: moderateScale(12) 
+    }
 })

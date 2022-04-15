@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
+import { moderateScale } from "../../styles/responsiveSize";
 
 export default StyleSheet.create({
     eyeBox: { 
         position: 'absolute', 
-        right: 20, 
-        top: 17 
+        right: moderateScale(20), 
+        top: moderateScale(17) 
     },
-    eyeButton: { 
-        height: 15, 
-        width: 20 
+    eyeImg: { 
+        height: moderateScale(18), 
+        width: moderateScale(21) 
     },
 })

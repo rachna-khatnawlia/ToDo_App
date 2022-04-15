@@ -26,12 +26,10 @@ const App = () => {
 
     getItem().then((res) => {
       console.log("GetItemValue", res);
-      if (!!res) {
         dispatch({
           type: types.SUBMIT_TO_DO,
           payload: res
         })
-      }
     })
   }, [])
 

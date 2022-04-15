@@ -7,13 +7,11 @@ import actions from '../../redux/actions';
 
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { DataTable } from 'react-native-paper';
 
 export default function Home({ navigation }) {
     
-    const dispatch = useDispatch();
-
     const EditDataPassThroughParam = (data) => {
         console.log(data)
         navigation.navigate(navigationStrings.ADD_TASK, { paramData: data })
