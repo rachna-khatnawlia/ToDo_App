@@ -39,6 +39,8 @@ export const AddTask = ({ navigation, route }) => {
     const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
     const nameRegex = /^[a-zA-Z]{2,40}[ ]*([a-zA-Z]{2,40})+$/;
     
+    //----------------------------------------->Validation
+    const validation = () =>{ }
 
     //----------------------------------------->Add New Task 
     const addTask = () => {
@@ -153,7 +155,7 @@ export const AddTask = ({ navigation, route }) => {
                 }
 
                 {/* ----------------------------show edit or submit button ----------------------------------- */}
-                <TouchableOpacity onPress={allData ? () => addTask() : () => edittask()}>
+                <TouchableOpacity onPress={allData ? () => edittask() : () => addTask()}>
                     <View style={commonStyle.logSignBtn}>
                         <Text style={commonStyle.logBtntxt}>{allData ? 'EDIT' : 'SUBMIT'}</Text>
                     </View>
@@ -164,3 +166,4 @@ export const AddTask = ({ navigation, route }) => {
         </View>
     )
 }
+
