@@ -51,8 +51,10 @@ export const getLoginLocally = async () => {
 
 export const removeLoginLocally = async () => {
     try {
-        await AsyncStorage.getItem('LoginLocalStatus');
+        await AsyncStorage.removeItem('LoginLocalStatus');
+        console.log("remove login");
+
     } catch (error) {
-        console.log(error);
+        console.log("error",error);
     }
 };

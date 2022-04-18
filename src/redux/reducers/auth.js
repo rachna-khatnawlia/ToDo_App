@@ -2,23 +2,25 @@ import { removeLoginLocally, setLoginLocally } from "../../utils/utils";
 import types from "../types";
 
 const initialState = {
-    userLoginState:{}
+    userLoginState: {}
 };
 
 export const UserStatus = (state = initialState, action) => {
     switch (action.type) {
-        case types.LOGIN:{
+        case types.LOGIN: {
             const data = action.payload;
             console.log("data on action type login", data);
             setLoginLocally(data);
             return {
-                userLoginState:data
+                userLoginState: data
             }
         }
 
-        case types.USER_LOGOUT:{ 
+        case types.USER_LOGOUT: {
             removeLoginLocally();
-            return {userLoginState:undefined}
+            return { 
+                userLoginState: undefined
+             }
         }
 
         default: return state

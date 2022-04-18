@@ -57,7 +57,6 @@ export const AddTask = ({ navigation, route }) => {
                         setaddError(false)
                         console.log("good to go");
 
-                        setItemLocally(data);
                         // console.log(data);
                         actions.addToDo(data);
                         navigation.navigate(navigationStrings.HOME);
