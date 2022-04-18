@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import RNRestart from 'react-native-restart'
+// import DropDownPicker from 'react-native-dropdown-picker';
 
 import loginStyles from './styles';
+import commonStyle from '../../styles/commonStyle';
 import imagePath from '../../constants/imagePath';
 import actions from '../../redux/actions';
+import strings from '../../constants/lang';
+import { changeLanguage } from '../../utils/utils';
 
-import { View, Text, TouchableOpacity, Image } from 'react-native';
 import PhoneInput from "react-native-phone-number-input";
-import commonStyle from '../../styles/commonStyle';
 import { Input } from '../../Components/Input';
 import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
+
+import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
 
 export default function Login() {
   //-------------------------------Field Value Usestate----------------------------
@@ -56,49 +61,83 @@ export default function Login() {
     }
   }
 
+  const onchangeLang = (key) => {
+    changeLanguage(key)
+    RNRestart.Restart()
+  }
+
+  // const [open, setOpen] = useState(false);
+  // const [value, setValue] = useState(null);
+  // const [items, setItems] = useState([
+  //   {label: 'English', value: 'English'},
+  //   {label: 'Hindi', value: 'Hindi'},
+  //   {label: 'French', value: 'French'}
+
+  // ]);
 
   return (
-    <View style={commonStyle.loginBox}>
-      <View style={commonStyle.loginFormBg}>
-        <Text style={commonStyle.loginHeading}>Login Screen</Text>
+    <View style={{ flex: 1 }}>
+      <View>
+        {/* //   <DropDownPicker
+    //   open={open}
+    //   value={value}
+    //   items={items}
+    //   setOpen={setOpen}
+    //   setValue={setValue}
+    //   setItems={setItems}
+    // /> */}
+      </View>
+      <View style={commonStyle.loginBox}>
+        <View style={commonStyle.loginFormBg}>
+          <Text style={commonStyle.loginHeading}>{strings.LOGIN_SCREEN}</Text>
 
-        {/* --------------------------------Mobile Input----------------------------- */}
-        <View style={{ marginVertical: moderateScaleVertical(15)}}>
-          <PhoneInput
-            placeholder={"Mobile No."}
-            containerStyle={commonStyle.phoneInput}
-            onChangeText={(value) => setMob(value)}
-          />
-          {
-            mobError ? <Text style={commonStyle.errorStyle}>Phone Number should have exactly 10 digits</Text> : null
-          }
-        </View>
-
-        <View>
-          {/* --------------------------------Password Input----------------------------- */}
-          <Input placeholderText="Password" valueText={pass} onChangeTxt={(value) => setPass(value)} secureTextEntry={passwordVisible} />
-
-          {/* -----------------------Password Input Eye------------------- */}
-          <TouchableOpacity onPress={handlePasswordEye} style={loginStyles.eyeBox}>
-            <Image
-              source={(passwordVisible) ? imagePath.hidePass : imagePath.showPass}
-              style={loginStyles.eyeImg}
+          {/* --------------------------------Mobile Input----------------------------- */}
+          <View style={{ marginVertical: moderateScaleVertical(15) }}>
+            <PhoneInput
+              placeholder={strings.MOBILE_NUMBER}
+              containerStyle={commonStyle.phoneInput}
+              onChangeText={(value) => setMob(value)}
             />
-          </TouchableOpacity>
-          {
-            passError ? <Text style={commonStyle.errorStyle}>Password should have atleast 8 digits, 1 capital letter,    1 lowerCase Letter and 1 special digit.</Text>: null
-          }
-        </View>
-
-        {/* --------------------------------Login Button----------------------------- */}
-        <TouchableOpacity onPress={() => handleLogin(data)}>
-          <View style={commonStyle.logSignBtn}>
-            <Text style={commonStyle.logBtntxt}>LOGIN</Text>
+            {
+              mobError ? <Text style={commonStyle.errorStyle}>Phone Number should have exactly 10 digits</Text> : null
+            }
           </View>
-        </TouchableOpacity>
+
+          <View>
+            {/* --------------------------------Password Input----------------------------- */}
+            <Input placeholderText={strings.PASSWORD} valueText={pass} onChangeTxt={(value) => setPass(value)} secureTextEntry={passwordVisible} />
+
+            {/* -----------------------Password Input Eye------------------- */}
+            <TouchableOpacity onPress={handlePasswordEye} style={loginStyles.eyeBox}>
+              <Image
+                source={(passwordVisible) ? imagePath.hidePass : imagePath.showPass}
+                style={loginStyles.eyeImg}
+              />
+            </TouchableOpacity>
+            {
+              passError ? <Text style={commonStyle.errorStyle}>Password should have atleast 8 digits, 1 capital letter,    1 lowerCase Letter and 1 special digit.</Text> : null
+            }
+          </View>
+
+          {/* --------------------------------Login Button----------------------------- */}
+          <TouchableOpacity onPress={() => handleLogin(data)}>
+            <View style={commonStyle.logSignBtn}>
+              <Text style={commonStyle.logBtntxt}>{strings.LOGIN}</Text>
+            </View>
+          </TouchableOpacity>
+
+          <View>
+            <Button title="Change Language (Fr.)" color="black" onPress={() => { onchangeLang('fr') }} />
+          </View>
+
+          <View>
+            <Button title="Change Language (EN.)" color="black" onPress={() => { onchangeLang('en') }} />
+          </View>
+
+        </View>
 
       </View>
-
     </View>
+
   );
 }

@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import strings from "../constants/lang";
 
 //-------------------------------Store and get task on Async storage--------------------------------
 export const setItemLocally = async (data) => {
@@ -57,4 +58,11 @@ export const removeLoginLocally = async () => {
     } catch (error) {
         console.log("error",error);
     }
+};
+
+
+//-------------------------------Set Language--------------------------------
+export const changeLanguage = async (languageKey) => {
+    await AsyncStorage.setItem('language',languageKey);
+    strings.setLanguage(languageKey);
 };
