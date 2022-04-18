@@ -38,9 +38,9 @@ export const AddTask = ({ navigation, route }) => {
 
     const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
     const nameRegex = /^[a-zA-Z]{2,40}[ ]*([a-zA-Z]{2,40})+$/;
-    
+
     //----------------------------------------->Validation
-    const validation = () =>{ }
+    const validation = () => { }
 
     //----------------------------------------->Add New Task 
     const addTask = () => {
@@ -57,12 +57,10 @@ export const AddTask = ({ navigation, route }) => {
                         setaddError(false)
                         console.log("good to go");
 
-                        
-                            setItemLocally(data);
-                            // console.log(data);
-                            actions.addToDo(data);
-                            navigation.navigate(navigationStrings.HOME);
-                        
+                        setItemLocally(data);
+                        // console.log(data);
+                        actions.addToDo(data);
+                        navigation.navigate(navigationStrings.HOME);
 
                     } else {
                         setaddError(true)
@@ -96,11 +94,11 @@ export const AddTask = ({ navigation, route }) => {
                         setaddError(false)
                         console.log("good to go");
 
-                        
-                                // console.log(idForEdit)
-                                actions.EditToDoData({ mobile, name, age, address, idForEdit });
-                                navigation.navigate(navigationStrings.HOME)
-                            
+
+                        // console.log(idForEdit)
+                        actions.EditToDoData({ mobile, name, age, address, idForEdit });
+                        navigation.navigate(navigationStrings.HOME)
+
 
                     } else {
                         setaddError(true)
