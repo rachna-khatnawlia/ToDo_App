@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import RNRestart from 'react-native-restart'
-// import DropDownPicker from 'react-native-dropdown-picker';
 
 import loginStyles from './styles';
 import commonStyle from '../../styles/commonStyle';
@@ -11,7 +10,7 @@ import { changeLanguage } from '../../utils/utils';
 
 import PhoneInput from "react-native-phone-number-input";
 import { Input } from '../../Components/Input';
-import { moderateScale, moderateScaleVertical } from '../../styles/responsiveSize';
+import { moderateScaleVertical } from '../../styles/responsiveSize';
 
 import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
 
@@ -66,26 +65,9 @@ export default function Login() {
     RNRestart.Restart()
   }
 
-  // const [open, setOpen] = useState(false);
-  // const [value, setValue] = useState(null);
-  // const [items, setItems] = useState([
-  //   {label: 'English', value: 'English'},
-  //   {label: 'Hindi', value: 'Hindi'},
-  //   {label: 'French', value: 'French'}
-
-  // ]);
-
   return (
     <View style={{ flex: 1 }}>
       <View>
-        {/* //   <DropDownPicker
-    //   open={open}
-    //   value={value}
-    //   items={items}
-    //   setOpen={setOpen}
-    //   setValue={setValue}
-    //   setItems={setItems}
-    // /> */}
       </View>
       <View style={commonStyle.loginBox}>
         <View style={commonStyle.loginFormBg}>
@@ -94,7 +76,7 @@ export default function Login() {
           {/* --------------------------------Mobile Input----------------------------- */}
           <View style={{ marginVertical: moderateScaleVertical(15) }}>
             <PhoneInput
-              placeholder={strings.MOBILE_NUMBER}
+              placeholder={strings.MOBILE_NO}
               containerStyle={commonStyle.phoneInput}
               onChangeText={(value) => setMob(value)}
             />

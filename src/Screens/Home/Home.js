@@ -9,6 +9,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import { useSelector } from 'react-redux';
 import { DataTable } from 'react-native-paper';
+import strings from '../../constants/lang';
 
 export default function Home({ navigation }) {
     
@@ -22,21 +23,21 @@ export default function Home({ navigation }) {
         <View style={homeStyle.homeContainer}>
                     {/* -------------------------Home and Logout--------------------------- */}
             <View style={homeStyle.homeRow1}>
-                <Text>HOME</Text>
+                <Text>{strings.HOME}</Text>
                 <TouchableOpacity onPress={() => actions.Logout()}>
-                    <Text style={homeStyle.logout}>Logout</Text>
+                    <Text style={homeStyle.logout}>{strings.LOGOUT}</Text>
                 </TouchableOpacity>
             </View>
 
                     {/* ------------------------------Table-------------------------------- */}
             <DataTable>
                 <DataTable.Header>
-                    <DataTable.Title>Name</DataTable.Title>
-                    <DataTable.Title>Age</DataTable.Title>
-                    <DataTable.Title>Address</DataTable.Title>
-                    <DataTable.Title>Mobile No.</DataTable.Title>
-                    <DataTable.Title>Delete</DataTable.Title>
-                    <DataTable.Title>Edit</DataTable.Title>
+                    <DataTable.Title>{strings.NAME}</DataTable.Title>
+                    <DataTable.Title>{strings.AGE}</DataTable.Title>
+                    <DataTable.Title>{strings.ADDRESS}</DataTable.Title>
+                    <DataTable.Title>{strings.MOBILE_NO}</DataTable.Title>
+                    <DataTable.Title>{strings.DELETE}</DataTable.Title>
+                    <DataTable.Title>{strings.EDIT}</DataTable.Title>
                 </DataTable.Header>
 
                 {
