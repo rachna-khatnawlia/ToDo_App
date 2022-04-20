@@ -11,15 +11,37 @@ import { getItem, getLoginLocally } from './src/utils/utils';
 import types from './src/redux/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import strings from './src/constants/lang';
-
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 const { dispatch } = store;
 
+export const googleLogin = async () => {
+  try {
+    await GoogleSignin.hasPlayServices();
+    const userInfo = await GoogleSignin.signIn();
+    console.log("User Info", userInfo);
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+      console.log(error);
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+      console.log(error);
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+      console.log(error);
+    } else {
+      // some other error happened
+      console.log(error);
+    }
+  }
+};
 
 const App = () => {
 
   useEffect(() => {
 
+    GoogleSignin.configure();
     getLang();
     getLoginLocally().then((res) => {
       console.log("GetLoginValue", res);

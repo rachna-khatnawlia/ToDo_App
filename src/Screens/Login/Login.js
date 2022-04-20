@@ -13,6 +13,7 @@ import { Input } from '../../Components/Input';
 import { moderateScaleVertical } from '../../styles/responsiveSize';
 
 import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
+import { googleLogin } from '../../../App';
 
 export default function Login() {
   //-------------------------------Field Value Usestate----------------------------
@@ -106,6 +107,10 @@ export default function Login() {
             <View style={commonStyle.logSignBtn}>
               <Text style={commonStyle.logBtntxt}>{strings.LOGIN}</Text>
             </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={googleLogin} style={{marginVertical:10}}>
+            <Text>Login With Google</Text>
           </TouchableOpacity>
 
           <View>
