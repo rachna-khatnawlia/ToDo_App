@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import strings from './src/constants/lang';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import actions from './src/redux/actions';
+import { requestUserPermission, notificationListener } from './src/utils/notificationServices';
 
 const { dispatch } = store;
 
@@ -43,7 +44,8 @@ export const googleLogin = async () => {
 const App = () => {
 
   useEffect(() => {
-
+    requestUserPermission();
+    notificationListener();
     GoogleSignin.configure();
     getLang();
     getLoginLocally().then((res) => {

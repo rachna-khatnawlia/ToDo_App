@@ -108,9 +108,13 @@ export default function Login() {
               <Text style={commonStyle.logBtntxt}>{strings.LOGIN}</Text>
             </View>
           </TouchableOpacity>
-
+          
+          
           <TouchableOpacity onPress={googleLogin} style={{marginVertical:10}}>
-            <Text>Login With Google</Text>
+              <Image
+                source={imagePath.google}
+                style={{height:70, width:100}}
+              />
           </TouchableOpacity>
 
           <View>
