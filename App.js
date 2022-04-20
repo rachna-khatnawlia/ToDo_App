@@ -12,6 +12,7 @@ import types from './src/redux/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import strings from './src/constants/lang';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import actions from './src/redux/actions';
 
 const { dispatch } = store;
 
@@ -19,7 +20,9 @@ export const googleLogin = async () => {
   try {
     await GoogleSignin.hasPlayServices();
     const userInfo = await GoogleSignin.signIn();
-    console.log("User Info", userInfo);
+    const data = userInfo?.user;
+    console.log("console after google Login---",data);
+    actions.loginFunction(data);
   } catch (error) {
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       // user cancelled the login flow

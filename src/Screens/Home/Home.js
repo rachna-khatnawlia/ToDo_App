@@ -10,21 +10,33 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { DataTable } from 'react-native-paper';
 import strings from '../../constants/lang';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export default function Home({ navigation }) {
-    
+    const handleLogout = async () =>{
+        try{
+            await GoogleSignin.signOut();
+            actions.Logout();
+        }
+        catch(error){
+            console.log("handleLogout Error", error);
+        }
+    }
     const EditDataPassThroughParam = (data) => {
         console.log(data)
         navigation.navigate(navigationStrings.ADD_TASK, { paramData: data })
     }
     const list = useSelector((state) => state.taskInput.todo_list);
-
+    
     return (
         <View style={homeStyle.homeContainer}>
                     {/* -------------------------Home and Logout--------------------------- */}
             <View style={homeStyle.homeRow1}>
                 <Text>{strings.HOME}</Text>
-                <TouchableOpacity onPress={() => actions.Logout()}>
+                <TouchableOpacity onPress={()=>navigation.navigate(navigationStrings.ABOUT)}>
+                    <Text style={homeStyle.about}>{strings.ABOUT}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleLogout}>
                     <Text style={homeStyle.logout}>{strings.LOGOUT}</Text>
                 </TouchableOpacity>
             </View>

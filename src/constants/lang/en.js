@@ -11,5 +11,6 @@ export default {
     DELETE: 'Delete',
     EDIT: 'Edit',
     TASK:'Task',
-    SUBMIT:'Submit'
+    SUBMIT:'Submit',
+    ABOUT:'About',
 }

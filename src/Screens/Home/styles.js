@@ -16,6 +16,11 @@ export const homeStyle = StyleSheet.create({
         color: 'orange',
         fontWeight: '700',
     },
+    about: {
+        fontSize: textScale(12),
+        color: 'green',
+        fontWeight: '600',
+    },
     editDelBtn: {
         height: moderateScale(30),
         width: moderateScale(30),
