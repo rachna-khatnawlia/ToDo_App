@@ -100,17 +100,17 @@ export const AddTask = ({ navigation, route }) => {
                     }
                 </View>
 
-                <Input placeholderText={strings.NAME} valueText={name} onChangeTxt={(value) => setInputName(value)} secureTextEntry="false" />
+                <Input placeholderText={strings.NAME} valueText={name} onChangeTxt={(value) => setInputName(value)} secureTextEntry={false} />
                 {
                     nameError ? <Text style={commonStyle.errorStyle}>Name should have atleast 2 digit.</Text> : null
                 }
 
-                <Input placeholderText={strings.AGE} valueText={age} onChangeTxt={(value) => setInputAge(value)} secureTextEntry="false" />
+                <Input placeholderText={strings.AGE} valueText={age} onChangeTxt={(value) => setInputAge(value)} secureTextEntry={false} />
                 {
                     ageError ? <Text style={commonStyle.errorStyle}>Age should be Atleast 18.</Text> : null
                 }
 
-                <Input placeholderText={strings.ADDRESS} valueText={address} onChangeTxt={(value) => setInputAddress(value)} secureTextEntry="false" />
+                <Input placeholderText={strings.ADDRESS} valueText={address} onChangeTxt={(value) => setInputAddress(value)} secureTextEntry={false} />
                 {
                     addError ? <Text style={commonStyle.errorStyle}>Address should not be null.</Text> : null
                 }

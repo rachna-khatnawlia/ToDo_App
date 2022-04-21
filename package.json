@@ -23,6 +23,7 @@
     "react-native-async-storage": "0.0.1",
     "react-native-dropdown-picker": "^5.4.0",
     "react-native-element-dropdown": "^1.8.8",
+    "react-native-fbsdk": "^3.0.0",
     "react-native-gesture-handler": "^2.3.2",
     "react-native-localization": "^2.3.1",
     "react-native-paper": "^4.12.0",

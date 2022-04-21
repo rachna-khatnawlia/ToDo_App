@@ -8,9 +8,11 @@ import actions from '../../redux/actions';
 import strings from '../../constants/lang';
 import { changeLanguage } from '../../utils/utils';
 
+import { GraphRequest, GraphRequestManager, LoginManager } from 'react-native-fbsdk';
+
 import PhoneInput from "react-native-phone-number-input";
 import { Input } from '../../Components/Input';
-import { moderateScaleVertical } from '../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
 import { googleLogin } from '../../../App';
@@ -66,6 +68,55 @@ export default function Login() {
     RNRestart.Restart()
   }
 
+  const fbLogin = (resCallBack) => {
+    LoginManager.logOut();
+    return LoginManager.logInWithPermissions(['email', 'public_profile']).then(
+      result => {
+        console.log("FB_LOGIN_RESULT =====>", result);
+        if (result.declinedPermissions && result.declinedPermissions.includes('email')) {
+          resCallBack({ message: "email is required" })
+        }
+        if (result.isCancelled) {
+          console.log("error")
+        } else {
+          const infoResquest = new GraphRequest(
+            '/me?fields = email, name, picture',
+            null,
+            resCallBack
+          );
+          new GraphRequestManager().addRequest(infoResquest).start()
+        }
+      },
+      function (error) {
+        console.log("login failed with error", error)
+      }
+    )
+  }
+
+  const onFbLogin = async () => {
+    try {
+      await fbLogin(resInfoCallBack)
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+
+  const resInfoCallBack = async (error, result) => {
+    if (error) {
+      console.log("Login Error", error)
+    } else {
+      const userData = result;
+      console.log(userData)
+      actions.login(userData);
+
+    }
+  }
+
+
+
+
+
+
   return (
     <View style={{ flex: 1 }}>
       <View>
@@ -108,14 +159,21 @@ export default function Login() {
               <Text style={commonStyle.logBtntxt}>{strings.LOGIN}</Text>
             </View>
           </TouchableOpacity>
-          
-          
-          <TouchableOpacity onPress={googleLogin} style={{marginVertical:10}}>
+
+            <View><Text style={{textAlign:'center', marginTop:moderateScale(30), fontSize:textScale(15)}}>Login With</Text></View>
+          <View style={{flexDirection:'row', justifyContent:'center'}}>
+            <TouchableOpacity onPress={googleLogin}>
               <Image
-                source={imagePath.google}
-                style={{height:70, width:100}}
+                source={imagePath.google} style={{ height: 70, width: 120, resizeMode: 'stretch' }}
               />
-          </TouchableOpacity>
+            </TouchableOpacity>
+            <Text style={{alignSelf:'center'}}>Or</Text>
+            <TouchableOpacity onPress={onFbLogin} style={{alignSelf:'center'}}>
+              <Image
+                source={imagePath.fb} style={{ height: 50, width: 130, resizeMode: 'stretch' }}
+              />
+            </TouchableOpacity>
+          </View>
 
           <View>
             <Button title="Change Language (Fr.)" color="black" onPress={() => { onchangeLang('fr') }} />
