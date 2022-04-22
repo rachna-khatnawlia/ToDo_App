@@ -107,8 +107,8 @@ export default function Login() {
       console.log("Login Error", error)
     } else {
       const userData = result;
-      console.log(userData)
-      actions.login(userData);
+      console.log("your data is",userData)
+      actions.loginFunction(data);
 
     }
   }
