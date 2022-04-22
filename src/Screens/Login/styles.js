@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { moderateScale } from "../../styles/responsiveSize";
+import { moderateScale, textScale } from "../../styles/responsiveSize";
 
 export default StyleSheet.create({
     eyeBox: { 
@@ -11,4 +11,23 @@ export default StyleSheet.create({
         height: moderateScale(18), 
         width: moderateScale(21) 
     },
+    fbLogin:{ 
+        height: 50, 
+        width: 130, 
+        resizeMode: 'stretch' 
+    },
+    googleLogin:{
+        height: moderateScale(70), 
+        width: 120, 
+        resizeMode: 'stretch'
+    },
+    loginWith:{
+        textAlign:'center', 
+        marginTop:moderateScale(30), 
+        fontSize:textScale(15)
+    },
+    flexRowCenter:{
+        flexDirection:'row', 
+        justifyContent:'center'
+    }
 })

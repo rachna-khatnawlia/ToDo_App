@@ -16,6 +16,7 @@ import { moderateScale, moderateScaleVertical, textScale } from '../../styles/re
 
 import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
 import { googleLogin } from '../../../App';
+import styles from './styles';
 
 export default function Login() {
   //-------------------------------Field Value Usestate----------------------------
@@ -160,17 +161,19 @@ export default function Login() {
             </View>
           </TouchableOpacity>
 
-            <View><Text style={{textAlign:'center', marginTop:moderateScale(30), fontSize:textScale(15)}}>Login With</Text></View>
-          <View style={{flexDirection:'row', justifyContent:'center'}}>
+          <View>
+            <Text style={styles.loginWith}>Login With</Text></View>
+          
+          <View style={styles.flexRowCenter}>
             <TouchableOpacity onPress={googleLogin}>
               <Image
-                source={imagePath.google} style={{ height: 70, width: 120, resizeMode: 'stretch' }}
+                source={imagePath.google} style={styles.googleLogin}
               />
             </TouchableOpacity>
             <Text style={{alignSelf:'center'}}>Or</Text>
             <TouchableOpacity onPress={onFbLogin} style={{alignSelf:'center'}}>
               <Image
-                source={imagePath.fb} style={{ height: 50, width: 130, resizeMode: 'stretch' }}
+                source={imagePath.fb} style={styles.fbLogin}
               />
             </TouchableOpacity>
           </View>
