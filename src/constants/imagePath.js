@@ -7,5 +7,6 @@ export default {
     delete: require('../assets/images/deleteIcon.png'),
     edit: require('../assets/images/editIcon.png'),
     google: require('../assets/images/google.png'),
-    fb: require('../assets/images/fb.png')
+    fb: require('../assets/images/fb.png'),
+    logo: require('../assets/images/logo.jpeg')
 };

@@ -11,6 +11,7 @@ export default StyleSheet.create({
         paddingHorizontal: moderateScale(18),
         paddingVertical: moderateScaleVertical(25),
         backgroundColor: '#fff',
+        borderRadius: moderateScale(6),
     },
     loginHeading: {
         fontSize: textScale(22),
@@ -18,7 +19,7 @@ export default StyleSheet.create({
         fontFamily:'Mulish-Bold'
     },
     phoneInput: { 
-        height: moderateScale(55), 
+        height: moderateScale(70), 
         width: '98%', 
         borderRadius: moderateScale(3), 
     },

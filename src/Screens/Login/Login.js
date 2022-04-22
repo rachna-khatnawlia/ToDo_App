@@ -115,9 +115,6 @@ export default function Login() {
 
 
 
-
-
-
   return (
     <View style={{ flex: 1 }}>
       <View>
@@ -162,15 +159,16 @@ export default function Login() {
           </TouchableOpacity>
 
           <View>
-            <Text style={styles.loginWith}>Login With</Text></View>
+            <Text style={styles.loginWith}>{strings.LOGIN_WITH}</Text>
+          </View>
           
           <View style={styles.flexRowCenter}>
-            <TouchableOpacity onPress={googleLogin}>
+            <TouchableOpacity onPress={googleLogin} style={{alignSelf:'center'}}>
               <Image
                 source={imagePath.google} style={styles.googleLogin}
               />
             </TouchableOpacity>
-            <Text style={{alignSelf:'center'}}>Or</Text>
+            <Text style={{alignSelf:'center'}}>{strings.OR}</Text>
             <TouchableOpacity onPress={onFbLogin} style={{alignSelf:'center'}}>
               <Image
                 source={imagePath.fb} style={styles.fbLogin}
@@ -178,13 +176,13 @@ export default function Login() {
             </TouchableOpacity>
           </View>
 
-          <View>
-            <Button title="Change Language (Fr.)" color="black" onPress={() => { onchangeLang('fr') }} />
-          </View>
+          <TouchableOpacity style={styles.changeLangBtn} onPress={() => { onchangeLang('fr') }}>
+              <Text style={styles.changeLangTxt}>Change Language (French)</Text>
+          </TouchableOpacity>
 
-          <View>
-            <Button title="Change Language (EN.)" color="black" onPress={() => { onchangeLang('en') }} />
-          </View>
+          <TouchableOpacity style={styles.changeLangBtn} onPress={() => { onchangeLang('en') }}>
+              <Text style={styles.changeLangTxt}>Change Language (English)</Text>
+          </TouchableOpacity>
 
         </View>
 

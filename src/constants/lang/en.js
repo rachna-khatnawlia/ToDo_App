@@ -13,4 +13,7 @@ export default {
     TASK:'Task',
     SUBMIT:'Submit',
     ABOUT:'About',
+    OR:'Or',
+    LOGIN_WITH:'Login With'
+
 }
