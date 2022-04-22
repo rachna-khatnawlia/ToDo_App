@@ -12,16 +12,16 @@ export default StyleSheet.create({
         width: moderateScale(21) 
     },
     fbLogin:{ 
-        height: moderateScale(85), 
-        width: moderateScale(85), 
+        height: moderateScale(70), 
+        width: moderateScale(70), 
         resizeMode: 'cover',
         borderRadius:moderateScale(40)
     },
     googleLogin:{
-        height: moderateScale(60), 
-        width: moderateScale(60), 
-        resizeMode: 'contain',
-        borderRadius:moderateScale(40),
+        height: moderateScale(50), 
+        width: moderateScale(50), 
+        resizeMode: 'cover',
+        borderRadius: 100,
         marginHorizontal:moderateScale(10)
     },
     loginWith:{

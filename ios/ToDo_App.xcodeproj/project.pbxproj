@@ -16,7 +16,7 @@
 		3875FA403C1DBB509999C058 /* libPods-ToDo_App-ToDo_AppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D64D1019535E06C7674AB68A /* libPods-ToDo_App-ToDo_AppTests.a */; };
 		6C1EED160AB34DA0B15E7C4C /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48B1455AADFB48F7B1A6010C /* CircularStd-Book.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		8475C60C280FF1FB00F4B19D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475C60B280FF1FB00F4B19D /* GoogleService-Info.plist */; };
+		84419F0D28128EA400270F74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84419F0C28128EA400270F74 /* GoogleService-Info.plist */; };
 		97CC9AC83149D1131DB13FCF /* libPods-ToDo_App.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E15B4631785B09B8F03BAFB9 /* libPods-ToDo_App.a */; };
 		B6DA3C1EB44443A6B81CBFCF /* CircularStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBCF03B5D1574ED381775775 /* CircularStd-Medium.otf */; };
 		D6BF679941AA47CEAEBE018B /* Mulish-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6763BEEE94F74D5392BE7CAA /* Mulish-SemiBold.otf */; };
@@ -53,7 +53,7 @@
 		6763BEEE94F74D5392BE7CAA /* Mulish-SemiBold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Mulish-SemiBold.otf"; path = "../src/assets/fonts/Mulish-SemiBold.otf"; sourceTree = "<group>"; };
 		799E8926B64178CF1A877844 /* Pods-ToDo_App-ToDo_AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo_App-ToDo_AppTests.debug.xcconfig"; path = "Target Support Files/Pods-ToDo_App-ToDo_AppTests/Pods-ToDo_App-ToDo_AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ToDo_App/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8475C60B280FF1FB00F4B19D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		84419F0C28128EA400270F74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "ToDo_App/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9697BC957E33F86C13877F60 /* Pods-ToDo_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDo_App.release.xcconfig"; path = "Target Support Files/Pods-ToDo_App/Pods-ToDo_App.release.xcconfig"; sourceTree = "<group>"; };
 		D64D1019535E06C7674AB68A /* libPods-ToDo_App-ToDo_AppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDo_App-ToDo_AppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E15B4631785B09B8F03BAFB9 /* libPods-ToDo_App.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDo_App.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +102,7 @@
 		13B07FAE1A68108700A75B9A /* ToDo_App */ = {
 			isa = PBXGroup;
 			children = (
-				8475C60B280FF1FB00F4B19D /* GoogleService-Info.plist */,
+				84419F0C28128EA400270F74 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -282,7 +282,7 @@
 				B6DA3C1EB44443A6B81CBFCF /* CircularStd-Medium.otf in Resources */,
 				F95CECBC524C4B028A44C98B /* Mulish-Bold.otf in Resources */,
 				250EA9875E7B4EF0B1973EDF /* Mulish-Medium.otf in Resources */,
-				8475C60C280FF1FB00F4B19D /* GoogleService-Info.plist in Resources */,
+				84419F0D28128EA400270F74 /* GoogleService-Info.plist in Resources */,
 				04CC1ABC1C1F471C941C9DCE /* Mulish-Regular.otf in Resources */,
 				D6BF679941AA47CEAEBE018B /* Mulish-SemiBold.otf in Resources */,
 			);
