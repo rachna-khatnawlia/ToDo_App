@@ -16,6 +16,7 @@ export default function Home({ navigation }) {
     const handleLogout = async () =>{
         try{
             await GoogleSignin.signOut();
+            
             actions.Logout();
         }
         catch(error){
