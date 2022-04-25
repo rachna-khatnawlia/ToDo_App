@@ -2,5 +2,6 @@ export default {
   LOGIN: 'Login',
   HOME: 'Home',
   ADD_TASK: 'AddTask',
-  ABOUT: 'About'
+  ABOUT: 'About',
+  SIGN_UP: 'SignUp'
 };

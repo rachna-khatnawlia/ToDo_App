@@ -14,6 +14,8 @@ export default {
     SUBMIT:'Submit',
     ABOUT:'About',
     OR:'Or',
-    LOGIN_WITH:'Login With'
+    LOGIN_WITH:'Login With',
+    NO_ACCOUNT:"Don't Have an Account.?",
+    SIGNUP_SCREEN:'Sign-Up Screen'
 
 }

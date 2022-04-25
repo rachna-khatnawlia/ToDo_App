@@ -14,5 +14,9 @@ export default {
     SUBMIT: 'Soumettre',
     ABOUT: 'Sur',
     OR: 'Ou alors',
-    LOGIN_WITH: 'Connectez-vous avec'
+    LOGIN_WITH: 'Connectez-vous avec',
+    NO_ACCOUNT: "Vous n'avez pas de compte ?",
+    SIGNUP_SCREEN:"ÉCRAN D'INSCRIPTION",
+
+
 }   
