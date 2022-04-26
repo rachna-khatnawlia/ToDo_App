@@ -6,20 +6,13 @@ import imagePath from '../../constants/imagePath';
 import actions from '../../redux/actions';
 import strings from '../../constants/lang';
 
-import PhoneInput from "react-native-phone-number-input";
 import { Input } from '../../Components/Input';
-import { moderateScale, moderateScaleVertical, textScale } from '../../styles/responsiveSize';
 
 import { View, Text, TouchableOpacity, Image, Button } from 'react-native';
-import styles from './styles';
+import navigationStrings from '../../navigation/navigationStrings';
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
   //-------------------------------Field Value Usestate----------------------------
-  const [pass, setPass] = useState('')
-  const [mob, setMob] = useState('')
-
-  const [mobError, setmobError] = useState(false)
-  const [passError, setpassError] = useState(false)
 
   //--------------------Handle Password Visibility using Eye Button----------------
   const [passwordVisible, setPasswordVisible] = useState(true)
@@ -31,33 +24,51 @@ export default function SignUp() {
     }
   }
 
-  const data = [{ pass, mob }];
+  //-------------------------------SignUp data-------------------------------------
+  const [signUpData, setSignupData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    phoneCode: '',
+    countryCode: '',
+    deviceToken: '',
+    deviceType: '',
+    password: ''
+  })
+
+  const { firstName, lastName, email, phone, phoneCode, countryCode, deviceToken, deviceType, password } = signUpData;
+  const updateState = (data) => setSignupData(() => ({ ...signUpData, ...data }))
 
   //-------------------------------Handle Login Function---------------------------
-  const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
-  const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+  // const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+  // const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-  const handleLogin = (data) => {
-    if (phoneRegex.test(mob)) {
-      setmobError(false)
 
-      if (passRegex.test(pass)) {
-
-        setpassError(false)
-
-        console.log(data);
-        actions.loginFunction(data);
-
-      } else {
-        setpassError(true)
-        setmobError(false)
-      }
+  const onSignUp = async() => {
+    let signUpAPIData = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone: phone,
+      phone_code: '91',
+      country_code: 'IN',
+      device_token: 'dtLFa9OM6UEbsHD1Cv_S-O:APA91bEO2rU_o3T5DkrZ32zzQwpbATBOf4kw0ASjzVmiKRDaDcOfrtv_fQVmF24Z7OLILBehOJob9V43i4og7LgPwrWE0TuECQaiDHRT3GBp9rMwbfya51vgbn8BovWFo4wiuY0KB6Cw',
+      device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
+      password: password
     }
-    else {
-      setmobError(true)
-      setpassError(true)
+    console.log("Signup data : ", signUpAPIData)
+    try {
+      const res = await actions.SignUp(signUpAPIData)
+      console.log("singnup api res_+++++", res)
+      navigation.navigate(navigationStrings.LOGIN)
+      alert("User signup successfully....!!!")
+    } catch (error) {
+      console.log("error raised", error)
+      alert(error?.message)
     }
   }
+
 
   return (
     <View style={{ flex: 1 }}>
@@ -67,21 +78,47 @@ export default function SignUp() {
         <View style={commonStyle.loginFormBg}>
           <Text style={commonStyle.loginHeading}>{strings.SIGNUP_SCREEN}</Text>
 
-          {/* --------------------------------Mobile Input----------------------------- */}
-          <View style={{ marginVertical: moderateScaleVertical(15) }}>
-            <PhoneInput
-              placeholder={strings.MOBILE_NO}
-              containerStyle={commonStyle.phoneInput}
-              onChangeText={(value) => setMob(value)}
+          <View>
+            {/* --------------------------------FirstName Input----------------------------- */}
+            <Input
+              placeholderText="First Name"
+              // value={firstName}
+              onChangeTxt={(firstName) => updateState({ firstName })}
+              secureTextEntry={false}
             />
-            {
-              mobError ? <Text style={commonStyle.errorStyle}>Phone Number should have exactly 10 digits</Text> : null
-            }
-          </View>
 
+            {/* --------------------------------LastName Input----------------------------- */}
+            <Input
+              placeholderText="Last Name"
+              // value={lastName}
+              onChangeTxt={(lastName) => updateState({ lastName })}
+              secureTextEntry={false}
+            />
+
+            {/* --------------------------------E-mail Input----------------------------- */}
+            <Input
+              placeholderText="E-mail"
+              // value={email}
+              onChangeTxt={(email) => updateState({ email })}
+              secureTextEntry={false}
+            />
+
+            {/* --------------------------------Mobile Input----------------------------- */}
+            <Input
+              placeholderText="Mobile Number"
+              // value={phone}
+              onChangeTxt={(phone)=>updateState({phone})}
+              secureTextEntry={false}
+            />
+          </View>
           <View>
             {/* --------------------------------Password Input----------------------------- */}
-            <Input placeholderText={strings.PASSWORD} valueText={pass} onChangeTxt={(value) => setPass(value)} secureTextEntry={passwordVisible} />
+            <Input
+              placeholderText="Password"
+              // value={password}
+              onChangeTxt={(password) => updateState({ password })}
+              secureTextEntry={passwordVisible}
+            />
 
             {/* -----------------------Password Input Eye------------------- */}
             <TouchableOpacity onPress={handlePasswordEye} style={loginStyles.eyeBox}>
@@ -90,19 +127,19 @@ export default function SignUp() {
                 style={loginStyles.eyeImg}
               />
             </TouchableOpacity>
-            {
+            {/* {
               passError ? <Text style={commonStyle.errorStyle}>Password should have atleast 8 digits, 1 capital letter,    1 lowerCase Letter and 1 special digit.</Text> : null
-            }
+            } */}
           </View>
 
-          {/* --------------------------------Login Button----------------------------- */}
-          <TouchableOpacity onPress={() => handleLogin(data)}>
+          {/* --------------------------------Signup Button----------------------------- */}
+          <TouchableOpacity onPress={onSignUp}>
             <View style={commonStyle.logSignBtn}>
-              <Text style={commonStyle.logBtntxt}>{strings.LOGIN}</Text>
+              <Text style={commonStyle.logBtntxt}>{strings.SIGNUP}</Text>
             </View>
           </TouchableOpacity>
 
-          
+
         </View>
 
       </View>

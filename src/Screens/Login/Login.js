@@ -19,6 +19,7 @@ import { googleLogin } from '../../../App';
 import styles from './styles';
 import navigationStrings from '../../navigation/navigationStrings';
 
+
 export default function Login({ navigation }) {
   //-------------------------------Field Value Usestate----------------------------
   const [pass, setPass] = useState('')
@@ -43,26 +44,42 @@ export default function Login({ navigation }) {
   const phoneRegex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
   const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
-  const handleLogin = (data) => {
-    if (phoneRegex.test(mob)) {
-      setmobError(false)
+  const handleLogin = async (data) => {
+    // if (phoneRegex.test(mob)) {
+    //   setmobError(false)
 
-      if (passRegex.test(pass)) {
+    //   if (passRegex.test(pass)) {
 
-        setpassError(false)
+    //     setpassError(false)
 
-        console.log(data);
-        actions.loginFunction(data);
+    //     console.log(data);
+    //     actions.loginFunction(data);
 
-      } else {
-        setpassError(true)
-        setmobError(false)
-      }
+    //   } else {
+    //     setpassError(true)
+    //     setmobError(false)
+    //   }
+    // }
+    // else {
+    //   setmobError(true)
+    //   setpassError(true)
+    // }
+    let apiData = {
+      phone: mob,
+      phone_code: "91",
+      device_token: 'dtLFa9OM6UEbsHD1Cv_S-O:APA91bEO2rU_o3T5DkrZ32zzQwpbATBOf4kw0ASjzVmiKRDaDcOfrtv_fQVmF24Z7OLILBehOJob9V43i4og7LgPwrWE0TuECQaiDHRT3GBp9rMwbfya51vgbn8BovWFo4wiuY0KB6Cw',
+      device_type: Platform.OS == 'ios' ? 'IOS' : 'ANDROID',
+      password: pass
     }
-    else {
-      setmobError(true)
-      setpassError(true)
+    try {
+      const res = await actions.Login(apiData)
+      console.log("Login api result +++++", res)
+      alert("User Login successfully....!!!")
+    } catch (error) {
+      console.log("error raised", error)
+      alert(error?.message)
     }
+
   }
 
   const onchangeLang = (key) => {
@@ -151,7 +168,7 @@ export default function Login({ navigation }) {
           </View>
 
           {/* --------------------------------Login Button----------------------------- */}
-          <TouchableOpacity onPress={{}}>
+          <TouchableOpacity onPress={handleLogin}>
             <View style={commonStyle.logSignBtn}>
               <Text style={commonStyle.logBtntxt}>{strings.LOGIN}</Text>
             </View>

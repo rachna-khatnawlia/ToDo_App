@@ -17,5 +17,6 @@ export default {
     LOGIN_WITH:'Login With',
     NO_ACCOUNT:"Don't Have an Account.?",
     SIGNUP_SCREEN:'Sign-Up Screen',
+    SIGNUP:'Sign-Up'
 
 }

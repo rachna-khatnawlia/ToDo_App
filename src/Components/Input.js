@@ -2,7 +2,12 @@ import React from "react";
 import commonStyle from "../styles/commonStyle";
 import { View, TextInput } from 'react-native';
 
-export const Input = ({ navigation, placeholderText, valueText, onChangeTxt, secureTextEntry }) => {
+export const Input = ({ 
+    placeholderText, 
+    valueText, 
+    onChangeTxt, 
+    secureTextEntry 
+}) => {
     return (
         <View>
             <TextInput
